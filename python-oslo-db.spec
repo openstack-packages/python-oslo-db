@@ -19,14 +19,9 @@ oslo.db library
 
 %prep
 %setup -q -n oslo.db-%{upstream_version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
-
 
 %build
 %{__python} setup.py build
-
 
 %install
 %{__python} setup.py install --skip-build --root %{buildroot}
@@ -38,5 +33,8 @@ rm -rf %{pypi_name}.egg-info
 %{python_sitelib}/oslo.db-%{version}*
 
 %changelog
+* Thu Aug 14 2014 Derek Higgins <derekh@redhat.com> - XXX
+- Don't remove the bundled egg-info
+
 * Fri Aug 01 2014 Derek Higgins <derekh@redhat.com> - XXX
 - Initial package.
