@@ -13,6 +13,14 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 
+Requires:         python-alembic
+Requires:         python-babel
+Requires:         python-iso8601
+Requires:         python-migrate
+Requires:         python-oslo-config
+Requires:         python-oslo-utils
+Requires:         python-stevedore
+Requires:         python-sqlalchemy
 
 %description
 oslo.db library
@@ -33,6 +41,9 @@ oslo.db library
 %{python_sitelib}/oslo.db-%{version}*
 
 %changelog
+* Tue Aug 19 2014 Derek Higgins <derekh@redhat.com> - XXX
+- Add dependencies
+
 * Thu Aug 14 2014 Derek Higgins <derekh@redhat.com> - XXX
 - Don't remove the bundled egg-info
 
