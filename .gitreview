@@ -2,4 +2,3 @@
 host=review.gerrithub.io
 port=29418
 project=openstack-packages/python-oslo-db
-defaultbranch=f20-master
