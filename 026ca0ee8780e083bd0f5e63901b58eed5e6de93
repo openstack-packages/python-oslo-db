@@ -1,0 +1,7 @@
+Code-Review+2: Gaël Chamoulaud <gchamoul@redhat.com>
+Verified+1: Gaël Chamoulaud <gchamoul@redhat.com>
+Submitted-by: Gaël Chamoulaud <gchamoul@redhat.com>
+Submitted-at: Fri, 12 Jun 2015 14:15:43 +0200
+Reviewed-on: https://review.gerrithub.io/236339
+Project: openstack-packages/python-oslo-db
+Branch: refs/heads/rpm-master
