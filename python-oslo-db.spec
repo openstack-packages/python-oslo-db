@@ -15,6 +15,7 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 
+Requires:       MySQL-python
 Requires:       python-oslo-config >= 1:1.4.0.0
 Requires:       python-oslo-i18n
 Requires:       python-oslo-utils
