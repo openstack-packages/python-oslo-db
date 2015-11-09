@@ -1,0 +1,7 @@
+Verified+1: rdo-ci-jenkins <whayutin+rdocijenkins@redhat.com>
+Code-Review+2: Alan Pevec <alan.pevec@redhat.com>
+Submitted-by: Alan Pevec <alan.pevec@redhat.com>
+Submitted-at: Mon, 09 Nov 2015 13:35:44 +0100
+Reviewed-on: https://review.gerrithub.io/251693
+Project: openstack-packages/python-oslo-db
+Branch: refs/heads/rpm-master
