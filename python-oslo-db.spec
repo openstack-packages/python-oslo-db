@@ -16,17 +16,17 @@ BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 
 Requires:       MySQL-python
-Requires:       python-oslo-config >= 1:1.4.0.0
-Requires:       python-oslo-i18n
-Requires:       python-oslo-utils
-Requires:       python-alembic >= 0.6.4
+Requires:       python-oslo-config >= 2:2.3.0
+Requires:       python-oslo-context >= 0.2.0
+Requires:       python-oslo-i18n >= 1.5.0
+Requires:       python-oslo-utils >= 2.0.0
+Requires:       python-alembic >= 0.8.0
 Requires:       python-babel
 Requires:       python-iso8601
-Requires:       python-sqlalchemy >= 0.8.4
-Requires:       python-migrate >= 0.9.1
-Requires:       python-stevedore >= 0.14
+Requires:       python-migrate >= 0.9.6
 Requires:       python-six >= 1.9.0
-Requires:       python-pbr
+Requires:       python-sqlalchemy >= 0.9.9
+Requires:       python-stevedore >= 1.5.0
 
 
 %description
