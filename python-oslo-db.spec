@@ -16,6 +16,7 @@ BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 
 Requires:       MySQL-python
+Requires:       python-PyMySQL
 Requires:       python-oslo-config >= 2:2.3.0
 Requires:       python-oslo-context >= 0.2.0
 Requires:       python-oslo-i18n >= 1.5.0
