@@ -1,7 +1,11 @@
-# Created by pyp2rpm-1.1.0b
 %global pypi_name oslo.db
+%global pkg_name oslo-db
 
-Name:           python-oslo-db
+%if 0%{?fedora} >= 24
+%global with_python3 1
+%endif
+
+Name:           python-%{pkg_name}
 Version:        XXX
 Release:        XXX
 Summary:        OpenStack oslo.db library
@@ -12,8 +16,26 @@ Source0:        https://pypi.python.org/packages/source/o/%{pypi_name}/%{pypi_na
 
 BuildArch:      noarch
 
+%description
+The OpenStack Oslo database handling library. Provides database connectivity
+to the different backends and helper utils.
+
+%package -n python2-%{pkg_name}
+Summary:        OpenStack oslo.db library
+
+%{?python_provide:%python_provide python2-%{pkg_name}}
+
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
+# test requirements
+BuildRequires:  python-oslo-utils
+BuildRequires:  python-oslo-config
+BuildRequires:  python-six
+BuildRequires:  python-alembic
+BuildRequires:  python-fixtures
+BuildRequires:  python-migrate
+BuildRequires:  python-testresources
+BuildRequires:  python-testscenarios
 
 Requires:       MySQL-python
 Requires:       python-PyMySQL
@@ -28,34 +50,74 @@ Requires:       python-migrate >= 0.9.6
 Requires:       python-six >= 1.9.0
 Requires:       python-sqlalchemy >= 0.9.9
 Requires:       python-stevedore >= 1.5.0
+Requires:       python-pbr
 
-
-%description
+%description -n python2-%{pkg_name}
 The OpenStack Oslo database handling library. Provides database connectivity
 to the different backends and helper utils.
-* Documentation: http://docs.openstack.org/developer/oslo.db
-* Source: http://git.openstack.org/cgit/openstack/oslo.db
-* Bugs: http://bugs.launchpad.net/oslo
 
 
-%package doc
+%package -n python-%{pkg_name}-doc
 Summary:    Documentation for the Oslo database handling library
-Group:      Documentation
 
 BuildRequires:  python-sphinx
 BuildRequires:  python-oslo-sphinx
-BuildRequires:  python-oslo-utils
-BuildRequires:  python-oslo-config
-BuildRequires:  python-six
-BuildRequires:  python-alembic
-BuildRequires:  python-fixtures
-BuildRequires:  python-migrate
-BuildRequires:  python-testresources
-BuildRequires:  python-testscenarios
 
-%description doc
+%description -n python-%{pkg_name}-doc
 Documentation for the Oslo database handling library.
 
+%package -n python-%{pkg_name}-tests
+Summary:    test subpackage for the Oslo database handling library
+
+Requires:  python-%{pkg_name} = %{version}-%{release}
+Requires:  python-oslo-utils
+Requires:  python-oslo-config
+Requires:  python-six
+Requires:  python-alembic
+Requires:  python-fixtures
+Requires:  python-migrate
+Requires:  python-testresources
+Requires:  python-testscenarios
+
+%description -n python-%{pkg_name}-tests
+Test subpackage for the Oslo database handling library.
+
+%if 0%{?with_python3}
+%package -n python3-%{pkg_name}
+Summary:        OpenStack oslo.db library
+%{?python_provide:%python_provide python3-%{pkg_name}}%
+
+BuildRequires:  python3-devel
+BuildRequires:  python3-pbr
+# test requirements
+BuildRequires:  python3-oslo-utils
+BuildRequires:  python3-oslo-config
+BuildRequires:  python3-six
+BuildRequires:  python3-alembic
+BuildRequires:  python3-fixtures
+BuildRequires:  python3-migrate
+BuildRequires:  python3-testresources
+BuildRequires:  python3-testscenarios
+
+Requires:       MySQL-python3
+Requires:       python3-PyMySQL
+Requires:       python3-oslo-config >= 2:2.3.0
+Requires:       python3-oslo-context >= 0.2.0
+Requires:       python3-oslo-i18n >= 1.5.0
+Requires:       python3-oslo-utils >= 2.0.0
+Requires:       python3-alembic >= 0.8.0
+Requires:       python3-babel
+Requires:       python3-iso8601
+Requires:       python3-migrate >= 0.9.6
+Requires:       python3-six >= 1.9.0
+Requires:       python3-sqlalchemy >= 0.9.9
+Requires:       python3-stevedore >= 1.5.0
+Requires:       python3-pbr
+
+%description -n python3-%{pkg_name}
+The OpenStack Oslo database handling library. Provides database connectivity
+to the different backends and helper utils.
+%endif
 
 %prep
 %setup -q -n %{pypi_name}-%{upstream_version}
@@ -63,26 +125,53 @@ Documentation for the Oslo database handling library.
 # Let RPM handle the dependencies
 rm -f requirements.txt
 
-
 %build
-%{__python2} setup.py build
+%py2_build
 
 # generate html docs
 sphinx-build doc/source html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
+%if 0%{?with_python3}
+%py3_build
+%endif
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%py2_install
 
+%if 0%{?with_python3}
+%py3_install
+%endif
 
-%files
-%doc README.rst LICENSE
+%check
+%{__python2} setup.py test
+%if 0%{?with_python3}
+rm -rf .testrepository
+%{__python3} setup.py test
+%endif
+
+%files -n python2-%{pkg_name}
+%doc README.rst
+%license LICENSE
 %{python2_sitelib}/oslo_db
 %{python2_sitelib}/*.egg-info
+%exclude %{python2_sitelib}/oslo_db/tests
 
-%files doc
-%doc html LICENSE
+%files -n python-%{pkg_name}-doc
+%doc html
+%license LICENSE
+
+%files -n python-%{pkg_name}-tests
+%{python2_sitelib}/oslo_db/tests
+
+%if 0%{?with_python3}
+%files -n python3-%{pkg_name}
+%doc README.rst
+%license LICENSE
+%{python3_sitelib}/oslo_db
+%{python3_sitelib}/*.egg-info
+%exclude %{python3_sitelib}/oslo_db/tests
+%endif
 
 %changelog
