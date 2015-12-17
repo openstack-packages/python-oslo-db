@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ac1b152_9d3947db",
+        "filename": "python-oslo-db.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1003941
+      },
+      "writtenOn": "2015-12-17T16:56:09Z",
+      "side": 1,
+      "message": "python-oslotest is missing here (also for python3 tests). Once this is added, some other test requirements will arise.",
+      "revId": "c9ea858f17fdb650320e7d581a9db8b38eda284c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac1b152_7d0e2b36",
+        "filename": "python-oslo-db.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1003941
+      },
+      "writtenOn": "2015-12-17T16:56:09Z",
+      "side": 1,
+      "message": "This % sign at the end should not be there.",
+      "range": {
+        "startLine": 88,
+        "startChar": 53,
+        "endLine": 88,
+        "endChar": 55
+      },
+      "revId": "c9ea858f17fdb650320e7d581a9db8b38eda284c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac1b152_dd1c9f6d",
+        "filename": "python-oslo-db.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1003941
+      },
+      "writtenOn": "2015-12-17T16:56:09Z",
+      "side": 1,
+      "message": "python3-migrate is not available, only python-migrate. Can we build that one?",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 40
+      },
+      "revId": "c9ea858f17fdb650320e7d581a9db8b38eda284c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
